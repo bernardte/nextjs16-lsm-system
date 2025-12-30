@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/ui/themeToggle";
 import { authClient } from "@/lib/better-auth/auth-client";
 import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 
 
 export default function Home() {
@@ -12,11 +13,12 @@ export default function Home() {
   } = authClient.useSession();
   const router = useRouter();
 
-  const signOut = async () => {
+  const handleSignOut = async () => {
     await authClient.signOut({
       fetchOptions: {
         onSuccess: () => {
           router.push("/login");
+          toast.success("successfully logged out");
         }
       }
     })
@@ -30,10 +32,10 @@ export default function Home() {
         session ? (
         <div>
           <p>{session.user.name}</p>
-          <Button>Logout</Button>
+          <Button onClick={handleSignOut}>Logout</Button>
         </div>
         ): (
-          <Button onClick={signOut}>Login</Button>
+          <Button onClick={() => router.push("/login")}>Login</Button>
         )
       }
     </div>
