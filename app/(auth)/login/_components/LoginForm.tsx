@@ -52,7 +52,7 @@ const LoginForm = () => {
       fetchOptions: {
         onSuccess: () => {
            toast.success("Email sent! Please check your inbox to continue.");
-           router.push(`/verify-request`);
+           router.push(`/verify-request?email=${encodeURIComponent(email)}`);
         },
         onError: () => {
           toast.error("Error sending email. Please try again.")
