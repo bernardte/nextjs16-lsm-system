@@ -24,30 +24,29 @@ const VerifyRequestPage = () => {
   const [otp, setOtp] = useState("");
   const [otpPending, startOTPTransition] = useTransition();
   const params = useSearchParams();
-  const email = params.get("email") || "" as string;
+  const email = params.get("email") || ("" as string);
   const decodedEmail = decodeURIComponent(email);
   const router = useRouter();
 
-
   const verifyOTP = () => {
-    startOTPTransition(async() => {
-        await authClient.signIn.emailOtp({
-          email: decodedEmail,
-          otp: otp,
-          fetchOptions: {
-            onSuccess: () => {
-                toast.success("Email verified successfully! You are now signed in.");
-                router.push("/");
-            },
-            onError: () => {
-                toast.error("Invalid OTP. please try again.")
-            }
+    startOTPTransition(async () => {
+      await authClient.signIn.emailOtp({
+        email: decodedEmail,
+        otp: otp,
+        fetchOptions: {
+          onSuccess: () => {
+            toast.success(
+              "Email verified successfully! You are now signed in."
+            );
+            router.push("/");
+          },
+          onError: () => {
+            toast.error("Invalid OTP. please try again.");
           }
-
-        });
-    })
-    
-  }
+        }
+      });
+    });
+  };
 
   return (
     <Card className="mx-auto w-full">
@@ -66,7 +65,7 @@ const VerifyRequestPage = () => {
             maxLength={6}
             className="gap-2"
           >
-            <InputOTPGroup>
+            <InputOTPGroup autoFocus>
               <InputOTPSlot index={0} />
               <InputOTPSlot index={1} />
               <InputOTPSlot index={2} />
@@ -82,15 +81,20 @@ const VerifyRequestPage = () => {
           </p>
         </div>
 
-        {otpPending ? (
+        <Button
+          className="w-full"
+          onClick={verifyOTP}
+          disabled={otpPending || otp.length !== 6}
+        >
+          {otpPending ? (
             <>
-                <Loader2 className="gap-4 animate-spin"/>
-                <span>verifying...</span>
+              <Loader2 className="size-4 animate-spin" />
+              <span>verifying...</span>
             </>
-        ): (
-            <Button className="w-full" onClick={verifyOTP}>Verify Request</Button>
-        )
-        }
+          ) : (
+            "Verify Email"
+          )}
+        </Button>
       </CardContent>
     </Card>
   );
