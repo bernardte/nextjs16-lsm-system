@@ -1,6 +1,17 @@
-import LoginForm from "@/components/auth/LoginForm";
+import LoginForm from "@/app/(auth)/login/_components/LoginForm";
+import { auth } from "@/lib/better-auth/auth";
+import { redirect } from "next/navigation";
+import { headers } from "next/headers";
 
-const LoginPage = () => {
+const LoginPage = async () => {
+  const session = await auth.api.getSession({
+    headers: await headers(),
+  })
+
+  if(session){
+    return redirect("/")
+  }
+
   return (
     <LoginForm />
   )

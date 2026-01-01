@@ -1,17 +1,43 @@
+"use client";
+import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/ui/themeToggle";
-import { auth } from "@/lib/better-auth/auth";
+import { authClient } from "@/lib/better-auth/auth-client";
+import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 
 
-export default async function Home() {
+export default function Home() {
 
-  const session = await auth.api.getSession({
-    headers: await headers(),
-  });
-  
+  const { 
+      data: session, 
+  } = authClient.useSession();
+  const router = useRouter();
+
+  const handleSignOut = async () => {
+    await authClient.signOut({
+      fetchOptions: {
+        onSuccess: () => {
+          router.push("/login");
+          toast.success("successfully logged out");
+        }
+      }
+    })
+  }
+
   return (
     <div>
-      <h1 className="">Hello world</h1>
+      <h1>Hello world</h1>
       <ThemeToggle />
+      {
+        session ? (
+        <div>
+          <p>{session.user.name}</p>
+          <Button onClick={handleSignOut}>Logout</Button>
+        </div>
+        ): (
+          <Button onClick={() => router.push("/login")}>Login</Button>
+        )
+      }
     </div>
   );
 }
