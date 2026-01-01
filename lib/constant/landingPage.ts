@@ -1,10 +1,5 @@
 import type { LucideIcon } from "lucide-react";
 import { BookOpen, Home, LayoutDashboard } from "lucide-react";
-interface FeaturesItems {
-  title: string;
-  description: string;
-  icon: string;
-}
 
 interface NavigationItems {
   label: string;
@@ -16,17 +11,22 @@ interface DropDownItems {
   label: string;
   link: string;
 }
+interface FeaturesItems {
+  title: string;
+  description: string;
+  icon: string;
+}
 
 export const navigationItems: NavigationItems[] = [
   { label: "Home", link: "/" },
   { label: "Courses", link: "/courses" },
-  { label: "Dashboard", link: "/dashboard" }
+  { label: "Dashboard", link: "/admin" }
 ];
 
 export const dropDownItems: DropDownItems[] = [
   { Icon: Home, label: "Home", link: "/" },
   { Icon: BookOpen, label: "Courses", link: "/courses" },
-  { Icon: LayoutDashboard, label: "Dashboard", link: "/dashboard" },
+  { Icon: LayoutDashboard, label: "Dashboard", link: "/admin" },
 ];
 
 export const features: FeaturesItems[] = [
