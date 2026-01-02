@@ -23,11 +23,12 @@ import {
 import { authClient } from "@/lib/better-auth/auth-client";
 import { dropDownItems } from "@/lib/constant/adminPage";
 import Link from "next/link";
+import { useSignOut } from "@/hooks/use-signout";
 
 export function NavUser() {
   const { data: session, isPending } = authClient.useSession();
   const { isMobile } = useSidebar();
-
+  const handleSignOut = useSignOut();
   if (isPending) {
     return null;
   }
@@ -118,7 +119,7 @@ export function NavUser() {
               ))}
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>
+            <DropdownMenuItem onClick={handleSignOut}>
               <IconLogout />
               Log out
             </DropdownMenuItem>

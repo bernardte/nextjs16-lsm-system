@@ -4,8 +4,12 @@ import { buttonVariants } from "@/components/ui/button";
 import Link from "next/link";
 import { features } from "@/lib/constant/landingPage";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { authClient } from "@/lib/better-auth/auth-client";
 
 export default function Home() {
+
+  const { data: session, isPending } = authClient.useSession();
+
   return (
     <>
       <section className="relative py-20">
@@ -27,15 +31,18 @@ export default function Home() {
             >
               <span className="font-semibold">Explore Courses</span>
             </Link>
-            <Link
-              className={buttonVariants({
-                size: "lg",
-                variant: "outline"
-              })}
-              href={"/login"}
-            >
-              <span className="font-semibold">Sign In</span>
-            </Link>
+
+            {!session && (
+              <Link
+                className={buttonVariants({
+                  size: "lg",
+                  variant: "outline"
+                })}
+                href={"/login"}
+              >
+                <span className="font-semibold">Sign In</span>
+              </Link>
+            )}
           </div>
         </div>
       </section>

@@ -9,6 +9,6 @@ interface DropDownItems {
 
 export const dropDownItems: DropDownItems[] = [
   { Icon: Home, label: "Home", link: "/" },
-  { Icon: BookOpen, label: "Courses", link: "/courses" },
+  { Icon: BookOpen, label: "Courses", link: "/admin/courses" },
   { Icon: LayoutDashboard, label: "Dashboard", link: "/admin" }
 ];

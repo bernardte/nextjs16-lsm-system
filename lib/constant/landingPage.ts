@@ -19,13 +19,13 @@ interface FeaturesItems {
 
 export const navigationItems: NavigationItems[] = [
   { label: "Home", link: "/" },
-  { label: "Courses", link: "/courses" },
+  { label: "Courses", link: "/admin/courses" },
   { label: "Dashboard", link: "/admin" }
 ];
 
 export const dropDownItems: DropDownItems[] = [
   { Icon: Home, label: "Home", link: "/" },
-  { Icon: BookOpen, label: "Courses", link: "/courses" },
+  { Icon: BookOpen, label: "Courses", link: "/admin/courses" },
   { Icon: LayoutDashboard, label: "Dashboard", link: "/admin" },
 ];
 

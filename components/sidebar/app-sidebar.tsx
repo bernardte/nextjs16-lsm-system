@@ -1,6 +1,6 @@
-"use client"
+"use client";
 
-import * as React from "react"
+import * as React from "react";
 import {
   IconCamera,
   IconDashboard,
@@ -9,12 +9,12 @@ import {
   IconHelp,
   IconListDetails,
   IconSearch,
-  IconSettings,
-} from "@tabler/icons-react"
+  IconSettings
+} from "@tabler/icons-react";
 
-import { NavMain } from "@/components/nav-main"
-import { NavSecondary } from "@/components/nav-secondary"
-import { NavUser } from "@/components/nav-user"
+import { NavMain } from "@/components/sidebar/nav-main";
+import { NavSecondary } from "@/components/sidebar/nav-secondary";
+import { NavUser } from "@/components/sidebar/nav-user";
 import {
   Sidebar,
   SidebarContent,
@@ -22,8 +22,8 @@ import {
   SidebarHeader,
   SidebarMenu,
   SidebarMenuButton,
-  SidebarMenuItem,
-} from "@/components/ui/sidebar"
+  SidebarMenuItem
+} from "@/components/ui/sidebar";
 import Link from "next/link";
 import Image from "next/image";
 import Logo from "@/public/Logo/Logo.png";
@@ -33,13 +33,13 @@ const data = {
     {
       title: "Dashboard",
       url: "/admin",
-      icon: IconDashboard,
+      icon: IconDashboard
     },
     {
       title: "Courses",
       url: "/admin/courses",
-      icon: IconListDetails,
-    },
+      icon: IconListDetails
+    }
   ],
   navClouds: [
     {
@@ -50,13 +50,13 @@ const data = {
       items: [
         {
           title: "Active Proposals",
-          url: "#",
+          url: "#"
         },
         {
           title: "Archived",
-          url: "#",
-        },
-      ],
+          url: "#"
+        }
+      ]
     },
     {
       title: "Proposal",
@@ -65,13 +65,13 @@ const data = {
       items: [
         {
           title: "Active Proposals",
-          url: "#",
+          url: "#"
         },
         {
           title: "Archived",
-          url: "#",
-        },
-      ],
+          url: "#"
+        }
+      ]
     },
     {
       title: "Prompts",
@@ -80,33 +80,33 @@ const data = {
       items: [
         {
           title: "Active Proposals",
-          url: "#",
+          url: "#"
         },
         {
           title: "Archived",
-          url: "#",
-        },
-      ],
-    },
+          url: "#"
+        }
+      ]
+    }
   ],
   navSecondary: [
     {
       title: "Settings",
       url: "#",
-      icon: IconSettings,
+      icon: IconSettings
     },
     {
       title: "Get Help",
       url: "#",
-      icon: IconHelp,
+      icon: IconHelp
     },
     {
       title: "Search",
       url: "#",
-      icon: IconSearch,
-    },
-  ],
-}
+      icon: IconSearch
+    }
+  ]
+};
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
@@ -119,7 +119,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
               className="data-[slot=sidebar-menu-button]:p-1.5!"
             >
               <Link href="/">
-                <Image src={Logo} alt="logo" width={60} height={60}/>
+                <Image src={Logo} alt="logo" width={60} height={60} />
                 <span className="text-base font-semibold">MarshalLMS.</span>
               </Link>
             </SidebarMenuButton>
@@ -134,5 +134,5 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         <NavUser />
       </SidebarFooter>
     </Sidebar>
-  )
+  );
 }
