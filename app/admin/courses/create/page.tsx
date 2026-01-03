@@ -38,6 +38,7 @@ import {
   courseStatus
 } from "@/lib/constant/adminPage";
 import { RichTextEditor } from "@/components/rich-text-editor/Editor";
+import Uploader from "@/components/file-uploader/Uploader";
 
 const CourseCreationPage = () => {
   // 1. Define form.
@@ -150,12 +151,7 @@ const CourseCreationPage = () => {
                   <FormItem className="w-full">
                     <FormLabel>Description</FormLabel>
                     <FormControl>
-                      <RichTextEditor />
-                      {/* <Textarea
-                        placeholder="Description"
-                        className="min-h-30"
-                        {...field}
-                      /> */}
+                      <RichTextEditor field={field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -168,7 +164,8 @@ const CourseCreationPage = () => {
                   <FormItem className="w-full">
                     <FormLabel>Thumbnail Image</FormLabel>
                     <FormControl>
-                      <Input placeholder="Thumbnail url" {...field} />
+                      <Uploader />
+                      {/* <Input placeholder="Thumbnail url" {...field} /> */}
                     </FormControl>
                     <FormMessage />
                   </FormItem>
