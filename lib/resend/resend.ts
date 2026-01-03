@@ -1,4 +1,5 @@
 // import { EmailTemplate } from '../../../components/EmailTemplate';
+import "server-only";
 import { Resend } from 'resend';
 import { env } from '../env';
 

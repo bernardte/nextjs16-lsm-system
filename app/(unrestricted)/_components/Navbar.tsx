@@ -43,9 +43,16 @@ const Navbar = () => {
           <ThemeToggle />
           {isPending ? null : session ? (
             <UserDropDown
-              email={session.user.email || ""}
-              imageUrl={session.user.image || ""}
-              name={session.user.name || ""}
+              email={session.user.email ?? ""}
+              imageUrl={
+                (session.user.image ?? session?.user.image) ??
+                `https://avatar.vercel.sh/${session?.user.email}`
+              }
+              name={
+                session?.user.name && session.user.name.length > 0
+                  ? session?.user.name
+                  : session?.user.email.split("@")[0]
+              }
             />
           ) : (
             <>

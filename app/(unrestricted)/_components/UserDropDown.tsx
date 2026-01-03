@@ -9,12 +9,10 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger
 } from "@/components/ui/dropdown-menu";
-import { authClient } from "@/lib/better-auth/auth-client";
+import { useSignOut } from "@/hooks/use-signout";
 import { dropDownItems } from "@/lib/constant/landingPage";
 import { ChevronDownIcon, LogOutIcon } from "lucide-react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { toast } from "sonner";
 
 interface UserDropDownProps {
   name: string;
@@ -23,20 +21,8 @@ interface UserDropDownProps {
 }
 
 const UserDropDown = ({ email, imageUrl, name }: UserDropDownProps) => {
-  const router = useRouter();
-  const handleSignOut = async () => {
-    await authClient.signOut({
-      fetchOptions: {
-        onSuccess: () => {
-          router.push("/login");
-          toast.success("successfully logged out");
-        },
-        onError: () => {
-          toast.error("Failed to sign out. Please try again later....");
-        }
-      }
-    });
-  };
+  const handleSignOut = useSignOut();
+ 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -52,7 +38,7 @@ const UserDropDown = ({ email, imageUrl, name }: UserDropDownProps) => {
           />
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="max-w-64" align="end" sideOffset={15}>
+      <DropdownMenuContent className="min-w-48" align="end" sideOffset={15}>
         <DropdownMenuLabel className="flex min-w-0 flex-col">
           <span className="text-foreground truncate text-sm font-medium">
             {name}
